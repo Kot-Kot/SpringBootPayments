@@ -8,6 +8,7 @@ class SpringBootPaymentsApplicationTests {
 
 	@Test
 	void contextLoads() {
+
 	}
 
 }
