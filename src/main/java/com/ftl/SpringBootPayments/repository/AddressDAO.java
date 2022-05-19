@@ -1,43 +1,45 @@
 package com.ftl.SpringBootPayments.repository;
 
 
+import com.ftl.SpringBootPayments.model.User;
+import com.ftl.SpringBootPayments.model.UserBillingAddress;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
+import java.util.List;
 
 @Repository
 public class AddressDAO {
-    public void insert(Connection connection, String[] address) {
+    private static final String KEYWORD = "ADDRESS";
+    private final JdbcTemplate jdbcTemplate;
+    private final RowMapper<UserBillingAddress> mapper = BeanPropertyRowMapper.newInstance(UserBillingAddress.class);
 
-        PreparedStatement preparedStatement = null;
-        try {
-            preparedStatement = connection.prepareStatement("INSERT INTO users_billing_address (billing_address, contact) VALUES (?, ?);");
-            preparedStatement.setString(1, address[1]);
-            preparedStatement.setString(2, address[2]);
-            preparedStatement.executeUpdate();
-            preparedStatement.close();
-            connection.commit();
-        } catch (Exception e) {
-            System.out.println( e.getClass().getName()+": "+ e.getMessage() );
-            System.exit(0);
-        }
-        //LOG.log(Level.INFO, "Success insert into users_billing_address table");
+    @Autowired
+    public AddressDAO(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
-    public void readAll(Connection connection) {
-        System.out.println();
-        System.out.println("Address Table");
-        try (Statement statement = connection.createStatement()) {
-            ResultSet rs = statement.executeQuery("select id, billing_address, contact from users_billing_address");
-            while (rs.next()) {
-                System.out.printf("%-20s%-50s%-20s\n",
-                        rs.getLong("id"),
-                        rs.getString("billing_address"),
-                        rs.getString("contact"));
+    public List<UserBillingAddress> selectAll() {
+        return jdbcTemplate.query("SELECT * FROM user_billing_addresses", mapper);
+    }
+
+    public void saveAll(List<String> stringsFromFile) {
+        String[] userBillingAddresses = null;
+        for (String s : stringsFromFile) {
+            System.out.println(s);
+            if (s.contains(KEYWORD)) {
+                userBillingAddresses = s.split("\\|");
+                jdbcTemplate.update("INSERT INTO user_billing_addresses (billing_address, contact) VALUES (?, ?);",
+                        userBillingAddresses[1], userBillingAddresses[2]);
+
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+
+
         }
-        //LOG.log(Level.INFO, "Success readAll from users_billing_address table");
     }
+
 }

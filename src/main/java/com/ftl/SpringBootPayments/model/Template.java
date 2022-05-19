@@ -26,6 +26,10 @@ public class Template {
         this.userContact = userContact;
     }
 
+    @Autowired
+    public Template() {
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -41,5 +45,36 @@ public class Template {
     @Override
     public int hashCode() {
         return Objects.hash(templateID, templateName, iban, paymentPurpose, userContact);
+    }
+
+    @Override
+    public String toString() {
+        return "Template{" +
+                "templateID=" + templateID +
+                ", templateName='" + templateName + '\'' +
+                ", iban='" + iban + '\'' +
+                ", paymentPurpose='" + paymentPurpose + '\'' +
+                ", userContact='" + userContact + '\'' +
+                '}';
+    }
+
+    public void setTemplateID(long templateID) {
+        this.templateID = templateID;
+    }
+
+    public void setTemplateName(String templateName) {
+        this.templateName = templateName;
+    }
+
+    public void setIban(String iban) {
+        this.iban = iban;
+    }
+
+    public void setPaymentPurpose(String paymentPurpose) {
+        this.paymentPurpose = paymentPurpose;
+    }
+
+    public void setUserContact(String userContact) {
+        this.userContact = userContact;
     }
 }

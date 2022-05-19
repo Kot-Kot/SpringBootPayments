@@ -12,8 +12,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Random;
 
-@Scope("prototype")
-@Component
+
 public class ThreadReadPayments extends Thread {
 
     private Connection connection;

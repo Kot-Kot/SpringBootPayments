@@ -8,15 +8,15 @@ create table users
 	)
 ;
 
-drop table if exists users_billing_address;
-create table users_billing_address
+drop table if exists user_billing_addresses;
+create table user_billing_addresses
 (
 	id bigserial primary key,
 	billing_address varchar(100) ,
 	contact varchar(100) references users(phone)
 )
 ;
-ALTER SEQUENCE users_billing_address_id_seq RESTART WITH 1000001;
+ALTER SEQUENCE user_billing_addresses_id_seq RESTART WITH 1000001;
 
 drop table if exists templates cascade
 ;
