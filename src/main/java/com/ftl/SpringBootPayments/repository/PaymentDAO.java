@@ -31,7 +31,8 @@ public class PaymentDAO {
 
 
 
-    public List<Payment> selectAll() {
+    public List<Payment> selectAll()
+    {
         return jdbcTemplate.query("SELECT * FROM payments", new PaymentMapper());
     }
 

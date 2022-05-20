@@ -18,3 +18,36 @@
 2022-05-20 17:07:01,131 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all addresses to DB
 2022-05-20 17:07:01,391 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all templates to DB
 2022-05-20 17:07:01,561 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all payments to DB
+2022-05-20 17:18:23,052 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all users to DB
+2022-05-20 17:18:23,064 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all addresses to DB
+2022-05-20 17:18:23,075 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all templates to DB
+2022-05-20 17:18:23,087 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all payments to DB
+2022-05-20 17:19:57,038 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all users to DB
+2022-05-20 17:19:57,051 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all addresses to DB
+2022-05-20 17:19:57,066 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all templates to DB
+2022-05-20 17:19:57,078 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all payments to DB
+2022-05-20 17:21:21,014 [http-nio-8080-exec-4] INFO  LOG_TO_FILE - Save all users to DB
+2022-05-20 17:21:21,022 [http-nio-8080-exec-4] INFO  LOG_TO_FILE - Save all addresses to DB
+2022-05-20 17:21:21,027 [http-nio-8080-exec-4] INFO  LOG_TO_FILE - Save all templates to DB
+2022-05-20 17:21:21,033 [http-nio-8080-exec-4] INFO  LOG_TO_FILE - Save all payments to DB
+2022-05-20 17:29:40,920 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all users to DB
+2022-05-20 17:29:40,936 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all addresses to DB
+2022-05-20 17:29:40,951 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all templates to DB
+2022-05-20 17:29:40,963 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all payments to DB
+2022-05-20 17:30:06,128 [http-nio-8080-exec-2] INFO  LOG_TO_FILE - Save all payments to DB
+2022-05-20 17:31:02,797 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all users to DB
+2022-05-20 17:31:02,813 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all addresses to DB
+2022-05-20 17:31:02,829 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all templates to DB
+2022-05-20 17:31:02,845 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all payments to DB
+2022-05-20 17:31:15,595 [http-nio-8080-exec-2] INFO  LOG_TO_FILE - Payment{id=100000001, templateId=10000001, cardNumber='4485578898964235', sum=100.55, status='failed', creationDateTime=2022-05-20T17:31:02.831428, statusChangedDateTime=2022-05-20T17:31:05.394065}
+2022-05-20 17:31:15,595 [http-nio-8080-exec-2] INFO  LOG_TO_FILE - Payment{id=100000002, templateId=10000002, cardNumber='4485578898964236', sum=500.0, status='failed', creationDateTime=2022-05-20T17:31:02.840429, statusChangedDateTime=2022-05-20T17:31:05.394065}
+2022-05-20 17:31:15,596 [http-nio-8080-exec-2] INFO  LOG_TO_FILE - Payment{id=100000003, templateId=10000003, cardNumber='4485578898964237', sum=1600.0, status='failed', creationDateTime=2022-05-20T17:31:02.842428, statusChangedDateTime=2022-05-20T17:31:05.394065}
+2022-05-20 17:31:15,596 [http-nio-8080-exec-2] INFO  LOG_TO_FILE - Payment{id=100000004, templateId=10000004, cardNumber='4485578898964238', sum=10000.55, status='failed', creationDateTime=2022-05-20T17:31:02.844430, statusChangedDateTime=2022-05-20T17:31:05.394065}
+2022-05-20 17:33:23,852 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all users to DB
+2022-05-20 17:33:23,871 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all addresses to DB
+2022-05-20 17:33:23,882 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all templates to DB
+2022-05-20 17:33:23,895 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all payments to DB
+2022-05-20 17:33:30,657 [http-nio-8080-exec-2] INFO  LOG_TO_FILE - Payment{id=100000002, templateId=10000002, cardNumber='4485578898964236', sum=500.0, status='paid', creationDateTime=2022-05-20T17:33:23.890394, statusChangedDateTime=2022-05-20T17:33:26.425900}
+2022-05-20 17:33:30,658 [http-nio-8080-exec-2] INFO  LOG_TO_FILE - Payment{id=100000003, templateId=10000003, cardNumber='4485578898964237', sum=1600.0, status='failed', creationDateTime=2022-05-20T17:33:23.892387, statusChangedDateTime=2022-05-20T17:33:26.425900}
+2022-05-20 17:33:30,658 [http-nio-8080-exec-2] INFO  LOG_TO_FILE - Payment{id=100000004, templateId=10000004, cardNumber='4485578898964238', sum=10000.55, status='failed', creationDateTime=2022-05-20T17:33:23.894388, statusChangedDateTime=2022-05-20T17:33:26.425900}
+2022-05-20 17:33:30,658 [http-nio-8080-exec-2] INFO  LOG_TO_FILE - Payment{id=100000001, templateId=10000001, cardNumber='4485578898964235', sum=100.55, status='failed', creationDateTime=2022-05-20T17:33:23.884389, statusChangedDateTime=2022-05-20T17:33:27.413629}

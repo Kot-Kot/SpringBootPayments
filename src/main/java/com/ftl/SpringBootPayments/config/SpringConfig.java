@@ -66,10 +66,10 @@ public class SpringConfig implements WebMvcConfigurer {
 //    }
 
 
-    @Bean
-    public JdbcTemplate jdbcTemplate() {
-        return new JdbcTemplate(dataSource);
-    }
+//    @Bean
+//    public JdbcTemplate jdbcTemplate() {
+//        return new JdbcTemplate(dataSource);
+//    }
 
 //    @Async
 //    @Scheduled(fixedRate = 1000)
