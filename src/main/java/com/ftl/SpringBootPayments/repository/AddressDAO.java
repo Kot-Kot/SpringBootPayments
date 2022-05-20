@@ -3,6 +3,8 @@ package com.ftl.SpringBootPayments.repository;
 
 import com.ftl.SpringBootPayments.model.User;
 import com.ftl.SpringBootPayments.model.UserBillingAddress;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,6 +16,7 @@ import java.util.List;
 
 @Repository
 public class AddressDAO {
+    private static final Logger logger = (Logger) LogManager.getLogger("LOG_TO_FILE");
     private static final String KEYWORD = "ADDRESS";
     private final JdbcTemplate jdbcTemplate;
     private final RowMapper<UserBillingAddress> mapper = BeanPropertyRowMapper.newInstance(UserBillingAddress.class);
@@ -24,14 +27,15 @@ public class AddressDAO {
     }
 
     public List<UserBillingAddress> selectAll() {
-        return jdbcTemplate.query("SELECT * FROM user_billing_addresses", mapper);
+        return jdbcTemplate.query("SELECT * FROM user_billing_addresses", new AddressMapper());
     }
 
     public void saveAll(List<String> stringsFromFile) {
         String[] userBillingAddresses = null;
         for (String s : stringsFromFile) {
-            System.out.println(s);
             if (s.contains(KEYWORD)) {
+                System.out.print("Added address   ");
+                System.out.println(s);
                 userBillingAddresses = s.split("\\|");
                 jdbcTemplate.update("INSERT INTO user_billing_addresses (billing_address, contact) VALUES (?, ?);",
                         userBillingAddresses[1], userBillingAddresses[2]);
@@ -40,6 +44,7 @@ public class AddressDAO {
 
 
         }
+        logger.info("Save all addresses to DB");
     }
 
 }

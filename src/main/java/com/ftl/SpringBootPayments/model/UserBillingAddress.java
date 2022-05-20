@@ -49,4 +49,16 @@ public class UserBillingAddress {
                 ", userContact='" + userContact + '\'' +
                 '}';
     }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setBillingAddress(String billingAddress) {
+        this.billingAddress = billingAddress;
+    }
+
+    public void setUserContact(String userContact) {
+        this.userContact = userContact;
+    }
 }

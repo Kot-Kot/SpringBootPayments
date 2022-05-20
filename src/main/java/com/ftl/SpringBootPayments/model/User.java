@@ -70,10 +70,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "fio='" + fio + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                '}';
+        return "User{" +"fio='" + fio + ", email='" + email + ", phone='" + phone + '}';
     }
 }

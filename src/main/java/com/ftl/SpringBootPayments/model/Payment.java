@@ -79,7 +79,7 @@ public class Payment {
         return templateId;
     }
 
-    public void setTemplateId(long templateId) {
+    public void setTemplateId(Long templateId) {
         this.templateId = templateId;
     }
 

@@ -1,34 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="OFF">
+<Configuration status="WARN">
+    <Properties>
+        <Property name="LOG_PATTERN_1">%d{yyyy-MM-dd'T'HH:mm:ss.SSSZ} %p %m%n</Property>
+        <Property name="LOG_PATTERN_2">%d [%t] %-5level %logger{36} - %msg%n%throwable</Property>
+        <Property name="LOG_PATTERN_3">%d %p %C{1.} [%t] %m%n</Property>
+        <Property name="LOG_PATTERN_4">%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}}
+            %highlight{${LOG_LEVEL_PATTERN:-%5p}}{FATAL=red blink, ERROR=red,
+            WARN=yellow bold, INFO=green, DEBUG=magenta, TRACE=blue}
+            [%15.15t] %style{%-40.40C{1.}}{cyan} %M(%F:%L) :
+            %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}</Property>
+    </Properties>
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}}
-	        %highlight{${LOG_LEVEL_PATTERN:-%5p}}{FATAL=red blink, ERROR=red,
-	        WARN=yellow bold, INFO=green, DEBUG=magenta, TRACE=blue}
-	        [%15.15t] %style{%-40.40C{1.}}{cyan} %M(%F:%L) :
-	        %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"/>
+            <PatternLayout pattern="${LOG_PATTERN_4}"/>
         </Console>
         <!-- Rolling File Appender -->
         <RollingFile name="RollingFile"
                      fileName="./logs/spring-boot-logger-log4j2.log"
                      filePattern="./logs/$${date:yyyy-MM}/spring-boot-logger-log4j2-%d{-dd-MMMM-yyyy}-%i.log.gz">
-            <PatternLayout>
-                <pattern>%d %p %C{1.} [%t] %m%n</pattern>
-            </PatternLayout>
+                <PatternLayout pattern="${LOG_PATTERN_2}"/>
+<!--            <PatternLayout>-->
+<!--                <pattern>%d [%t] %-5level %logger{36} - %msg%n%throwable</pattern>-->
+<!--            </PatternLayout>-->
             <Policies>
-                <!-- rollover on startup, daily and when the file reaches
-                    10 MegaBytes -->
-                <OnStartupTriggeringPolicy />
-                <SizeBasedTriggeringPolicy
-                        size="10 MB" />
-                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="19500KB" />
             </Policies>
+            <DefaultRolloverStrategy max="1" />
         </RollingFile>
     </Appenders>
     <Loggers>
-        <Root level="info">
+        <Logger name="LOG_TO_FILE"
+                level="info" additivity="false">
+            <AppenderRef ref="RollingFile" />
+        </Logger>
+        <Root level="debug">
             <AppenderRef ref="Console"/>
-            <AppenderRef ref="RollingFile"/>
+<!--            <AppenderRef ref="RollingFile"/>-->
         </Root>
 
     </Loggers>

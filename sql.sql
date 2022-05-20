@@ -38,7 +38,7 @@ drop table if exists payments
 create table payments
 (
 	id bigserial primary key,
-	template_id int references templates(id),
+	template_id bigserial references templates(id),
 	card_number varchar(100),
 	p_sum numeric(12,2),
 	status varchar(10),
