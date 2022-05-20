@@ -21,6 +21,7 @@ public class ReadFromInitFileController {
 
     @GetMapping(value = "/read")
     public List<String> readFromInitFile() {
+        System.out.println("Read from init file");
         return readFromInitFileDAO.readFromInitFile();
     }
 }
