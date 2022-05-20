@@ -34,6 +34,7 @@ public class UserDAO  {
 
 
     public List<User> selectAll() {
+
         return jdbcTemplate.query("SELECT * FROM users", mapper);
     }
 

@@ -37,6 +37,8 @@ public class SpringConfig implements WebMvcConfigurer {
     private String username;
     @Value("${spring.datasource.password}")
     private String password;
+    @Autowired
+    private DataSource dataSource;
 
     @Autowired
     public SpringConfig(ApplicationContext applicationContext) {
@@ -44,20 +46,20 @@ public class SpringConfig implements WebMvcConfigurer {
     }
 
 
-    @Bean
-    public DataSource dataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(driver);
-        dataSource.setUrl(url);
-        dataSource.setUsername(username);
-        dataSource.setPassword(password);
-
-
-        return dataSource;
-    }
+//    @Bean
+//    public DataSource dataSource() {
+//        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+//        dataSource.setDriverClassName(driver);
+//        dataSource.setUrl(url);
+//        dataSource.setUsername(username);
+//        dataSource.setPassword(password);
+//
+//
+//        return dataSource;
+//    }
 
 //    @Bean
-//    @ConfigurationProperties(prefix = "datasource.my")
+//    @ConfigurationProperties(prefix = "dataSource.my")
 //    public DataSource dataSource() {
 //        return DataSourceBuilder.create()
 //                .type(HikariDataSource.class).build();
@@ -66,7 +68,7 @@ public class SpringConfig implements WebMvcConfigurer {
 
     @Bean
     public JdbcTemplate jdbcTemplate() {
-        return new JdbcTemplate(dataSource());
+        return new JdbcTemplate(dataSource);
     }
 
 //    @Async

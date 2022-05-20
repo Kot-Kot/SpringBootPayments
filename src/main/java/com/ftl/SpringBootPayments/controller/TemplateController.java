@@ -33,9 +33,9 @@ public class TemplateController {
     @RequestMapping("/show")
     public String selectAll() {
         List<Template> templates = templateDAO.selectAll();
-//        for(Template t : templates){
-//            System.out.println(t.toString());
-//        }
+        for(Template t : templates){
+            System.out.println(t.toString());
+        }
         return templateDAO.selectAll().toString();
 
     }
