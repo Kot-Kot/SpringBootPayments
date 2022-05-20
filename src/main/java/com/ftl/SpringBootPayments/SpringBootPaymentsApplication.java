@@ -34,7 +34,7 @@ public static void main(String[] args) {
 		SpringApplication.run(SpringBootPaymentsApplication.class, args);
 
 	} catch (Exception ex) {
-		System.out.println("------------------------------------");
+		System.out.println("____________________________________________");
 		ex.printStackTrace();
 	}
 }

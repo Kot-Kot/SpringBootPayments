@@ -8,6 +8,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.Objects;
 
+@lombok.Data
+@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor
 @Scope("prototype")
 @Component
 public class UserBillingAddress {
@@ -16,49 +19,49 @@ public class UserBillingAddress {
     private String userContact;
 
 
-    @Autowired
-    public UserBillingAddress(int userID, String billingAddress, String userContact) {
-        this.id = userID;
-        this.billingAddress = billingAddress;
-        this.userContact = userContact;
-    }
-    @Autowired
-    public UserBillingAddress() {
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        UserBillingAddress that = (UserBillingAddress) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(billingAddress, that.billingAddress) &&
-                Objects.equals(userContact, that.userContact);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, billingAddress, userContact);
-    }
-
-    @Override
-    public String toString() {
-        return "UserBillingAddress{" +
-                "id=" + id +
-                ", billingAddress='" + billingAddress + '\'' +
-                ", userContact='" + userContact + '\'' +
-                '}';
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public void setBillingAddress(String billingAddress) {
-        this.billingAddress = billingAddress;
-    }
-
-    public void setUserContact(String userContact) {
-        this.userContact = userContact;
-    }
+//    @Autowired
+//    public UserBillingAddress(int userID, String billingAddress, String userContact) {
+//        this.id = userID;
+//        this.billingAddress = billingAddress;
+//        this.userContact = userContact;
+//    }
+//    @Autowired
+//    public UserBillingAddress() {
+//    }
+//
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        UserBillingAddress that = (UserBillingAddress) o;
+//        return Objects.equals(id, that.id) &&
+//                Objects.equals(billingAddress, that.billingAddress) &&
+//                Objects.equals(userContact, that.userContact);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(id, billingAddress, userContact);
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return "UserBillingAddress{" +
+//                "id=" + id +
+//                ", billingAddress='" + billingAddress + '\'' +
+//                ", userContact='" + userContact + '\'' +
+//                '}';
+//    }
+//
+//    public void setId(long id) {
+//        this.id = id;
+//    }
+//
+//    public void setBillingAddress(String billingAddress) {
+//        this.billingAddress = billingAddress;
+//    }
+//
+//    public void setUserContact(String userContact) {
+//        this.userContact = userContact;
+//    }
 }

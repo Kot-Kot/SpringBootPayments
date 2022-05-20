@@ -126,3 +126,36 @@
 2022-05-20 19:40:11,181 [http-nio-8080-exec-2] INFO  LOG_TO_FILE - Payment{id=100000003, templateId=10000003, cardNumber='4485578898964237', sum=1600.0, status='paid', creationDateTime=2022-05-20T19:39:59.499421, statusChangedDateTime=2022-05-20T19:40:01.701726}
 2022-05-20 19:40:11,181 [http-nio-8080-exec-2] INFO  LOG_TO_FILE - Payment{id=100000004, templateId=10000004, cardNumber='4485578898964238', sum=10000.55, status='paid', creationDateTime=2022-05-20T19:39:59.500419, statusChangedDateTime=2022-05-20T19:40:01.701726}
 2022-05-20 19:40:11,181 [http-nio-8080-exec-2] INFO  LOG_TO_FILE - Payment{id=100000002, templateId=10000002, cardNumber='4485578898964236', sum=500.0, status='paid', creationDateTime=2022-05-20T19:39:59.497421, statusChangedDateTime=2022-05-20T19:40:02.686421}
+2022-05-20 19:55:45,832 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Tables were created from sql file
+2022-05-20 19:55:45,880 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all users to DB
+2022-05-20 19:55:45,896 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all addresses to DB
+2022-05-20 19:55:45,915 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all templates to DB
+2022-05-20 19:55:45,929 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all payments to DB
+2022-05-20 19:56:35,413 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Tables were created from sql file
+2022-05-20 19:56:35,462 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all users to DB
+2022-05-20 19:56:35,483 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all addresses to DB
+2022-05-20 19:56:35,501 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all templates to DB
+2022-05-20 19:56:35,516 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all payments to DB
+2022-05-20 20:01:33,050 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Tables were created from sql file
+2022-05-20 20:01:33,089 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all users to DB
+2022-05-20 20:01:33,104 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all addresses to DB
+2022-05-20 20:01:33,121 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all templates to DB
+2022-05-20 20:01:33,138 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all payments to DB
+2022-05-20 20:05:50,221 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Tables were created from sql file
+2022-05-20 20:05:50,257 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all users to DB
+2022-05-20 20:05:50,271 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all addresses to DB
+2022-05-20 20:05:50,284 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all templates to DB
+2022-05-20 20:05:50,296 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all payments to DB
+2022-05-20 20:06:12,378 [http-nio-8080-exec-2] INFO  LOG_TO_FILE - User(fio=Ivanov Ivan, email=i.ivanov@gmail.com, phone=0993505050)
+2022-05-20 20:06:12,378 [http-nio-8080-exec-2] INFO  LOG_TO_FILE - User(fio=Ivanov RIvan, email=i.ivanov2@gmail.com, phone=0913505050)
+2022-05-20 20:06:12,378 [http-nio-8080-exec-2] INFO  LOG_TO_FILE - User(fio=Ivanov QIvan, email=i.ivanov3@gmail.com, phone=0923505050)
+2022-05-20 20:06:22,306 [http-nio-8080-exec-3] INFO  LOG_TO_FILE - UserBillingAddress(id=1000001, billingAddress=Ivanov Ivan,Kashtanovaya str, Kyiv 45005, userContact=0993505050)
+2022-05-20 20:06:22,306 [http-nio-8080-exec-3] INFO  LOG_TO_FILE - UserBillingAddress(id=1000002, billingAddress=Ivanov Ivan,Abrikosovaya str, Lviv, 90009, userContact=0993505050)
+2022-05-20 20:06:30,778 [http-nio-8080-exec-4] INFO  LOG_TO_FILE - Template(templateID=10000001, templateName=Template 1, iban=UA903052992990004149123456701, paymentPurpose=Purpose 1, userContact=0993505050)
+2022-05-20 20:06:30,778 [http-nio-8080-exec-4] INFO  LOG_TO_FILE - Template(templateID=10000002, templateName=Template 2, iban=UA903052992990004149123456702, paymentPurpose=Purpose 2, userContact=0993505050)
+2022-05-20 20:06:30,778 [http-nio-8080-exec-4] INFO  LOG_TO_FILE - Template(templateID=10000003, templateName=Template 3, iban=UA903052992990004149123456703, paymentPurpose=Purpose 3, userContact=0993505050)
+2022-05-20 20:06:30,779 [http-nio-8080-exec-4] INFO  LOG_TO_FILE - Template(templateID=10000004, templateName=Template 4, iban=UA903052992990004149123456704, paymentPurpose=Purpose 4, userContact=0993505050)
+2022-05-20 20:06:40,437 [http-nio-8080-exec-5] INFO  LOG_TO_FILE - Payment(id=100000001, templateId=10000001, cardNumber=4485578898964235, sum=100.55, status=paid, creationDateTime=2022-05-20T20:05:50.285321, statusChangedDateTime=2022-05-20T20:05:53.191560)
+2022-05-20 20:06:40,437 [http-nio-8080-exec-5] INFO  LOG_TO_FILE - Payment(id=100000003, templateId=10000003, cardNumber=4485578898964237, sum=1600.0, status=failed, creationDateTime=2022-05-20T20:05:50.293304, statusChangedDateTime=2022-05-20T20:05:53.194558)
+2022-05-20 20:06:40,437 [http-nio-8080-exec-5] INFO  LOG_TO_FILE - Payment(id=100000004, templateId=10000004, cardNumber=4485578898964238, sum=10000.55, status=paid, creationDateTime=2022-05-20T20:05:50.294299, statusChangedDateTime=2022-05-20T20:05:53.196549)
+2022-05-20 20:06:40,437 [http-nio-8080-exec-5] INFO  LOG_TO_FILE - Payment(id=100000002, templateId=10000002, cardNumber=4485578898964236, sum=500.0, status=failed, creationDateTime=2022-05-20T20:05:50.292298, statusChangedDateTime=2022-05-20T20:05:54.180385)
