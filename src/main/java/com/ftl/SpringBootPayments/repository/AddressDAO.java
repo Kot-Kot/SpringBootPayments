@@ -37,6 +37,7 @@ public class AddressDAO {
                 System.out.print("Added address   ");
                 System.out.println(s);
                 userBillingAddresses = s.split("\\|");
+                userBillingAddresses[2] = userBillingAddresses[2].replaceAll("[^A-Za-z0-9]", "");
                 jdbcTemplate.update("INSERT INTO user_billing_addresses (billing_address, contact) VALUES (?, ?);",
                         userBillingAddresses[1], userBillingAddresses[2]);
 

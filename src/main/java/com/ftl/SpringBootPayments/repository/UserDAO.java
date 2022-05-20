@@ -45,6 +45,7 @@ public class UserDAO  {
                 System.out.print("Added user   ");
                 System.out.println(s);
                 user = s.split("\\|");
+                user[3] = user[3].replaceAll("[^A-Za-z0-9]", "");
                 jdbcTemplate.update("INSERT INTO users (fio, email, phone) VALUES(?, ?, ?)",
                         user[1], user[2], user[3]);
 

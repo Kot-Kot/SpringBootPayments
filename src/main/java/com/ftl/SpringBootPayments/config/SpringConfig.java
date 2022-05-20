@@ -29,14 +29,14 @@ import javax.sql.DataSource;
 public class SpringConfig implements WebMvcConfigurer {
     private final ApplicationContext applicationContext;
 
-    @Value("${spring.datasource.driver-class-name}")
-    private String driver;
-    @Value("${spring.datasource.url}")
-    private String url;
-    @Value("${spring.datasource.username}")
-    private String username;
-    @Value("${spring.datasource.password}")
-    private String password;
+//    @Value("${spring.datasource.driver-class-name}")
+//    private String driver;
+//    @Value("${spring.datasource.url}")
+//    private String url;
+//    @Value("${spring.datasource.username}")
+//    private String username;
+//    @Value("${spring.datasource.password}")
+//    private String password;
     @Autowired
     private DataSource dataSource;
 
@@ -57,14 +57,6 @@ public class SpringConfig implements WebMvcConfigurer {
 //
 //        return dataSource;
 //    }
-
-//    @Bean
-//    @ConfigurationProperties(prefix = "dataSource.my")
-//    public DataSource dataSource() {
-//        return DataSourceBuilder.create()
-//                .type(HikariDataSource.class).build();
-//    }
-
 
 //    @Bean
 //    public JdbcTemplate jdbcTemplate() {

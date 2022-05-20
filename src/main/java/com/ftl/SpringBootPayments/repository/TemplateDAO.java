@@ -37,6 +37,7 @@ public class TemplateDAO {
                 System.out.print("Added template   ");
                 System.out.println(s);
                 template = s.split("\\|");
+                template[4] = template[4].replaceAll("[^A-Za-z0-9]", "");
                 jdbcTemplate.update("INSERT INTO templates (template_name, iban, purpose, contact) VALUES (?, ?, ?, ?);",
                         template[1], template[2], template[3], template[4]);
 

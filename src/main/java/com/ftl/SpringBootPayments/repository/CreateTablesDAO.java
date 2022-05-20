@@ -1,6 +1,8 @@
 package com.ftl.SpringBootPayments.repository;
 
 import com.ftl.SpringBootPayments.model.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,6 +16,8 @@ import java.sql.Statement;
 
 @Repository
 public class CreateTablesDAO {
+    private static final Logger logger = (Logger) LogManager.getLogger("LOG_TO_FILE");
+
     private final JdbcTemplate jdbcTemplate;
 
     private final RowMapper<User> mapper = BeanPropertyRowMapper.newInstance(User.class);
@@ -44,7 +48,7 @@ public class CreateTablesDAO {
         }
 
         jdbcTemplate.execute(sb.toString());
-        //LOG.log(Level.INFO, "Tables created");
+        logger.info( "Tables were created from sql file");
         return sb.toString();
     }
 

@@ -1,6 +1,10 @@
 package com.ftl.SpringBootPayments.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +23,8 @@ public class WriteFromFileToDBController {
     private PaymentController paymentController;
 
 
-    @RequestMapping("/write")
+
+    @GetMapping("/write")
     public void readFromDB(){
         createTablesController.createTables();
         userController.saveAll();
