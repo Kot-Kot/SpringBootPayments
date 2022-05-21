@@ -1,0 +1,26 @@
+[
+{ "templateName": "Template 1",
+    "iban": "UA903052992990004149123456701",
+	"paymentPurpose": "Purpose 1",
+	"userContact": "0993505050"
+	
+},
+{ "templateName": "Template 2",
+    "iban": "UA903052992990004149123456702",
+	"paymentPurpose": "Purpose 2",
+	"userContact": "0993505050"
+	
+},
+{ "templateName": "Template 3",
+    "iban": "UA903052992990004149123456703",
+	"paymentPurpose": "Purpose 3",
+	"userContact": "0993505050"
+	
+},
+{ "templateName": "Template 4",
+    "iban": "UA903052992990004149123456704",
+	"paymentPurpose": "Purpose 4",
+	"userContact": "0993505050"
+	
+},
+]

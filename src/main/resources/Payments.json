@@ -1,0 +1,26 @@
+[
+{ "templateId": "10000001",
+    "cardNumber": "4485578898964235",
+	"sum": "100.55",
+	"status": "new"
+	
+},
+{ "templateId": "10000002",
+    "cardNumber": "4485578898964236",
+	"sum": "200.55",
+	"status": "new"
+	
+},
+{ "templateId": "10000003",
+    "cardNumber": "4485578898964237",
+	"sum": "500.55",
+	"status": "new"
+	
+},
+{ "templateId": "10000004",
+    "cardNumber": "4485578898964238",
+	"sum": "1000.55",
+	"status": "new"
+	
+}
+]
