@@ -14,13 +14,11 @@ import java.util.Objects;
 @lombok.Data
 @lombok.AllArgsConstructor
 @lombok.NoArgsConstructor
-@Scope("prototype")
-@Component
 public class User {
     private String fio;
     private String email;
     private String phone;
-//
+
 //    @Autowired
 //    public User(String fio, String email, String phone) {
 //        this.fio = fio;

@@ -16,6 +16,8 @@ import org.springframework.stereotype.Repository;
 import java.sql.*;
 import java.util.List;
 
+import static java.sql.Types.VARCHAR;
+
 @Log4j2
 @Repository
 public class UserDAO  {
@@ -54,6 +56,22 @@ public class UserDAO  {
 
         }
         logger.info("Save all users to DB");
+    }
+
+    public void save (User user) {
+        jdbcTemplate.update(
+                "INSERT INTO users (fio, email, phone) VALUES (?, ?, ?)",
+                new Object[]{
+                        user.getFio(),
+                        user.getEmail(),
+                        user.getPhone()
+                },
+                new int[]{
+                        VARCHAR, VARCHAR, VARCHAR
+                }
+        );
+
+        logger.info("Save user to DB : " + user.toString());
     }
 
 }

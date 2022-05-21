@@ -1,4 +1,4 @@
-package com.ftl.SpringBootPayments.repository;
+package com.ftl.SpringBootPayments.repository.mappers;
 
 import com.ftl.SpringBootPayments.model.Payment;
 import com.ftl.SpringBootPayments.model.Template;

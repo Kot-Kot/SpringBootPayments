@@ -5,9 +5,7 @@ import com.ftl.SpringBootPayments.repository.AddressDAO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,21 +24,38 @@ public class AddressController {
     }
 
 
-    @GetMapping("/save")
+    @GetMapping("/saveAll")
     public String saveAll() {
         addressDAO.saveAll(readFromInitFileController.readFromInitFile());
         return "saveaddresses";
 
     }
 
+    @PutMapping("/save")
+    public void save(@RequestBody UserBillingAddress address) {
+        addressDAO.save(address);
+    }
+
+//    @GetMapping ("/show")
+//    public String selectAll() {
+//        List<UserBillingAddress> userBillingAddresses = addressDAO.selectAll();
+//        for(UserBillingAddress u : userBillingAddresses){
+//            logger.info(u.toString());
+//            System.out.println(u.toString());
+//        }
+//        return addressDAO.selectAll().toString();
+//
+//    }
+
     @GetMapping ("/show")
-    public String selectAll() {
+    @ResponseBody
+    public List<UserBillingAddress> selectAll() {
         List<UserBillingAddress> userBillingAddresses = addressDAO.selectAll();
         for(UserBillingAddress u : userBillingAddresses){
-            logger.info(u.toString());
+            logger.info("Select from DB : " + u.toString());
             System.out.println(u.toString());
         }
-        return addressDAO.selectAll().toString();
+        return userBillingAddresses;
 
     }
 }

@@ -4,6 +4,7 @@ import com.ftl.SpringBootPayments.model.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -22,6 +23,9 @@ public class CreateTablesDAO {
 
     private final RowMapper<User> mapper = BeanPropertyRowMapper.newInstance(User.class);
 
+    @Value("${createTablesFile}")
+    private String createTablesFile;
+
     @Autowired
     public CreateTablesDAO(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -33,7 +37,7 @@ public class CreateTablesDAO {
         StringBuffer sb = new StringBuffer();
         FileReader fr = null;
         try {
-            fr = new FileReader(new File("sql.sql"));
+            fr = new FileReader(new File(createTablesFile));
             BufferedReader br = new BufferedReader(fr);
             while((s = br.readLine()) != null)
             {
@@ -42,9 +46,9 @@ public class CreateTablesDAO {
             br.close();
 
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
 
         jdbcTemplate.execute(sb.toString());

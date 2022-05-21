@@ -1,8 +1,8 @@
 package com.ftl.SpringBootPayments.repository;
 
 
-import com.ftl.SpringBootPayments.model.User;
 import com.ftl.SpringBootPayments.model.UserBillingAddress;
+import com.ftl.SpringBootPayments.repository.mappers.AddressMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +11,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import java.sql.*;
 import java.util.List;
+
+import static java.sql.Types.VARCHAR;
 
 @Repository
 public class AddressDAO {
@@ -46,6 +47,20 @@ public class AddressDAO {
 
         }
         logger.info("Save all addresses to DB");
+    }
+
+    public void save (UserBillingAddress address) {
+        jdbcTemplate.update(
+                "INSERT INTO user_billing_addresses (billing_address, contact) VALUES (?, ?)",
+                new Object[]{
+                        address.getBillingAddress(),
+                        address.getUserContact()
+                },
+                new int[]{
+                        VARCHAR, VARCHAR
+                }
+        );
+        logger.info("Save address to DB : " + address.toString());
     }
 
 }

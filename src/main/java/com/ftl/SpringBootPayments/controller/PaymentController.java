@@ -2,13 +2,12 @@ package com.ftl.SpringBootPayments.controller;
 
 import com.ftl.SpringBootPayments.model.Payment;
 import com.ftl.SpringBootPayments.model.Template;
+import com.ftl.SpringBootPayments.model.UserBillingAddress;
 import com.ftl.SpringBootPayments.repository.PaymentDAO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,22 +26,39 @@ public class PaymentController {
     }
 
 
-    @GetMapping("/save")
+    @GetMapping("/saveAll")
     public String saveAll() {
         paymentDAO.saveAll(readFromInitFileController.readFromInitFile());
         return "savePayments";
 
     }
 
-    @GetMapping("/show")
-    public String selectAll() {
+    @PutMapping("/save")
+    public void save(@RequestBody Payment payment) {
+        paymentDAO.save(payment);
+    }
+
+//    @GetMapping("/show")
+//    public String selectAll() {
+//        List<Payment> payments = paymentDAO.selectAll();
+//        System.out.println();
+//        for(Payment p : payments){
+//            logger.info(p.toString());
+//            System.out.println(p.toString());
+//        }
+//        return paymentDAO.selectAll().toString();
+//
+//    }
+
+    @GetMapping ("/show")
+    @ResponseBody
+    public List<Payment> selectAll() {
         List<Payment> payments = paymentDAO.selectAll();
-        System.out.println();
         for(Payment p : payments){
-            logger.info(p.toString());
+            logger.info("Select from DB : " + p.toString());
             System.out.println(p.toString());
         }
-        return paymentDAO.selectAll().toString();
+        return payments;
 
     }
 
