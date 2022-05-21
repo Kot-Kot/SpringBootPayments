@@ -34,29 +34,4 @@ public class SpringConfig implements WebMvcConfigurer {
         this.applicationContext = applicationContext;
     }
 
-
-//    @Bean
-//    public DataSource dataSource() {
-//        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-//        dataSource.setDriverClassName(driver);
-//        dataSource.setUrl(url);
-//        dataSource.setUsername(username);
-//        dataSource.setPassword(password);
-//
-//
-//        return dataSource;
-//    }
-
-//    @Bean
-//    public JdbcTemplate jdbcTemplate() {
-//        return new JdbcTemplate(dataSource);
-//    }
-
-//    @Async
-//    @Scheduled(fixedRate = 1000)
-//    public void scheduleFixedDelayTask() throws InterruptedException {
-//        System.out.println(
-//                "Fixed rate task async - " + System.currentTimeMillis() / 1000);
-//        Thread.sleep(10000);
-//    }
 }

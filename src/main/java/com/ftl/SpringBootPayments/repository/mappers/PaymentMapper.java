@@ -1,12 +1,8 @@
 package com.ftl.SpringBootPayments.repository.mappers;
-
 import com.ftl.SpringBootPayments.model.Payment;
-import com.ftl.SpringBootPayments.model.Template;
 import org.springframework.jdbc.core.RowMapper;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 
 public class PaymentMapper implements RowMapper<Payment> {
     @Override

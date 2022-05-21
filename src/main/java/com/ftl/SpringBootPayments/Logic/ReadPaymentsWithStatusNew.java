@@ -40,7 +40,7 @@ public class ReadPaymentsWithStatusNew {
 
     @Autowired
     @Async
-    @Scheduled(fixedRate = 1000)
+    @Scheduled(fixedDelay = 1000)
     public void startReading() {
 //            System.out.println("\nEvery 1 sec");
             List<Payment> payments = paymentDAO.selectWithStatus(status);
@@ -51,9 +51,9 @@ public class ReadPaymentsWithStatusNew {
             }
             LocalDateTime now = LocalDateTime.now();
             for (Payment p : payments) {
-                System.out.println("time = " + p.getCreationDateTime().until(now, ChronoUnit.MILLIS));
+                //System.out.println("time = " + p.getCreationDateTime().until(now, ChronoUnit.MILLIS));
                 if (p.getCreationDateTime().until(now, ChronoUnit.MILLIS) > 2000) {
-                    System.out.println("statusGenerator  : " + p.getId() + "  " + p.getStatus());
+                    //System.out.println("statusGenerator  : " + p.getId() + "  " + p.getStatus());
                     String statusGenerator = statusGenerator();
                     paymentDAO.update(statusGenerator, p.getId());
                     logger.info(p.toString() + " change status to : " + statusGenerator);
@@ -61,7 +61,7 @@ public class ReadPaymentsWithStatusNew {
             }
         }
 
-    private String statusGenerator() {
+     private String statusGenerator() {
         Random random = new Random();
         int number = random.nextInt(3);
         switch (number) {
