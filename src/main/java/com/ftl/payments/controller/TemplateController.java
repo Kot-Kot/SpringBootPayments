@@ -1,6 +1,5 @@
 package com.ftl.payments.controller;
 
-
 import com.ftl.payments.model.Template;
 import com.ftl.payments.repository.TemplateDAO;
 import org.apache.logging.log4j.LogManager;

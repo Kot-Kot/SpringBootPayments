@@ -21,8 +21,8 @@ public class CreateTablesDAO {
 
     private final RowMapper<User> mapper = BeanPropertyRowMapper.newInstance(User.class);
 
-    @Value("${createTablesFile}")
-    private String createTablesFile;
+    @Value("${createTablesFileName}")
+    private String createTablesFileName;
 
     @Autowired
     public CreateTablesDAO(JdbcTemplate jdbcTemplate) {
@@ -35,7 +35,7 @@ public class CreateTablesDAO {
         StringBuffer sb = new StringBuffer();
         FileReader fr = null;
         try {
-            fr = new FileReader(new File(createTablesFile));
+            fr = new FileReader(new File(createTablesFileName));
             BufferedReader br = new BufferedReader(fr);
             while ((s = br.readLine()) != null) {
                 sb.append(s);

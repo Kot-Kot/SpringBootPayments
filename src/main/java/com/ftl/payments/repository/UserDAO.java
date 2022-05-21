@@ -52,8 +52,6 @@ public class UserDAO {
                         VARCHAR, VARCHAR, VARCHAR
                 }
         );
-
         logger.info("Save user to DB : " + user.toString());
     }
-
 }
