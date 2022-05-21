@@ -29,17 +29,6 @@ import javax.sql.DataSource;
 public class SpringConfig implements WebMvcConfigurer {
     private final ApplicationContext applicationContext;
 
-//    @Value("${spring.datasource.driver-class-name}")
-//    private String driver;
-//    @Value("${spring.datasource.url}")
-//    private String url;
-//    @Value("${spring.datasource.username}")
-//    private String username;
-//    @Value("${spring.datasource.password}")
-//    private String password;
-    @Autowired
-    private DataSource dataSource;
-
     @Autowired
     public SpringConfig(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;

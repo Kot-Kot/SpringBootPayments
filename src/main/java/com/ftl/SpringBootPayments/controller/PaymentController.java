@@ -7,6 +7,7 @@ import com.ftl.SpringBootPayments.repository.PaymentDAO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,21 +17,18 @@ import java.util.List;
 public class PaymentController {
     private static final Logger logger = (Logger) LogManager.getLogger("LOG_TO_FILE");
     private final PaymentDAO paymentDAO;
+    @Value("${paymentStatusNew}")
+    private String status;
 
-    private final ReadFromInitFileController readFromInitFileController;
 
     @Autowired
-    public PaymentController(PaymentDAO paymentDAO, ReadFromInitFileController readFromInitFileController) {
+    public PaymentController(PaymentDAO paymentDAO) {
         this.paymentDAO = paymentDAO;
-        this.readFromInitFileController = readFromInitFileController;
     }
 
-
-    @GetMapping("/saveAll")
-    public String saveAll() {
-        paymentDAO.saveAll(readFromInitFileController.readFromInitFile());
-        return "savePayments";
-
+    @GetMapping("/updateAll")
+    public void updateAll() {
+        paymentDAO.updateAllWithStatusNew("new");
     }
 
     @PutMapping("/save")
@@ -38,17 +36,10 @@ public class PaymentController {
         paymentDAO.save(payment);
     }
 
-//    @GetMapping("/show")
-//    public String selectAll() {
-//        List<Payment> payments = paymentDAO.selectAll();
-//        System.out.println();
-//        for(Payment p : payments){
-//            logger.info(p.toString());
-//            System.out.println(p.toString());
-//        }
-//        return paymentDAO.selectAll().toString();
-//
-//    }
+    @PutMapping("/saveAll")
+    public void saveAll(@RequestBody List<Payment> payments) {
+        paymentDAO.saveAll(payments);
+    }
 
     @GetMapping ("/show")
     @ResponseBody
@@ -56,19 +47,19 @@ public class PaymentController {
         List<Payment> payments = paymentDAO.selectAll();
         for(Payment p : payments){
             logger.info("Select from DB : " + p.toString());
-            System.out.println(p.toString());
         }
         return payments;
 
     }
 
     @GetMapping("/showStatusNew")
-    public String selectStatusNew() {
-        List<Payment> payments = paymentDAO.selectWithStatus("new");
+    @ResponseBody
+    public List<Payment> selectStatusNew() {
+        List<Payment> payments = paymentDAO.selectWithStatus(status);
         for(Payment p : payments){
-            System.out.println(p.toString());
+            logger.info("Select from DB : " + p.toString());
         }
-        return paymentDAO.selectWithStatus("new").toString();
+        return payments;
 
     }
 

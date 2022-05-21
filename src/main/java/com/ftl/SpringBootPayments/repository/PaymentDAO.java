@@ -22,19 +22,16 @@ import static java.sql.Types.NUMERIC;
 import static java.sql.Types.TIMESTAMP;
 import static java.sql.Types.BIGINT;
 
-@Log4j2
+
 @Repository
 public class PaymentDAO {
     private static final Logger logger = (Logger) LogManager.getLogger("LOG_TO_FILE");
-    private static final String KEYWORD = "PAYMENT";
     private final JdbcTemplate jdbcTemplate;
-    private final RowMapper<Payment> mapper = BeanPropertyRowMapper.newInstance(Payment.class);
+
     @Autowired
     public PaymentDAO(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-
-
 
     public List<Payment> selectAll()
     {
@@ -42,7 +39,9 @@ public class PaymentDAO {
     }
 
     public List<Payment> selectWithStatus(String status) {
-        return jdbcTemplate.query("SELECT * FROM payments WHERE status = ?", new String[]{status}, new PaymentMapper());
+        return jdbcTemplate.query("SELECT * FROM payments WHERE status = ?", new Object[]{status}
+                ,new int[]{Types.VARCHAR}
+                ,new PaymentMapper());
     }
 
     public void update(String newStatus, Long id) {
@@ -50,21 +49,32 @@ public class PaymentDAO {
                 newStatus,Timestamp.valueOf(LocalDateTime.now()), id);
     }
 
-    public void saveAll(List<String> stringsFromFile) {
-        String[] payment = null;
-        for (String s : stringsFromFile) {
-            if (s.contains(KEYWORD)) {
-                System.out.print("Added payment    ");
-                System.out.println(s);
-                payment = s.split("\\|");
-                payment[4] = payment[4].replaceAll("[^A-Za-z0-9]", "");
-                jdbcTemplate.update("INSERT INTO payments " +
-                                "(template_id, card_number, p_sum, status, creation_dt, status_changed_dt) " +
-                                "VALUES (?, ?, ?, ?, ?, ?);",
-                        Long.parseLong(payment[1]), payment[2], Double.parseDouble(payment[3]), payment[4],  Timestamp.valueOf(LocalDateTime.now()), Timestamp.valueOf(LocalDateTime.now()));
+    public void updateAllWithStatusNew(String newStatus) {
+        jdbcTemplate.update("UPDATE payments SET status = ?, status_changed_dt = ?",
+                newStatus,Timestamp.valueOf(LocalDateTime.now()));
+    }
 
-            }
+    public void saveAll(List<Payment> payments) {
+        for (Payment payment : payments) {
+            jdbcTemplate.update(
+                    "INSERT INTO payments " +
+                            "(template_id, card_number, p_sum, status, creation_dt, status_changed_dt) " +
+                            "VALUES (?, ?, ?, ?, ?, ?);",
+                    new Object[]{
+                            payment.getTemplateId(),
+                            payment.getCardNumber(),
+                            payment.getSum(),
+                            payment.getStatus(),
+                            Timestamp.valueOf(LocalDateTime.now()),
+                            Timestamp.valueOf(LocalDateTime.now())
 
+                    },
+                    new int[]{
+                            BIGINT, VARCHAR, NUMERIC, VARCHAR, TIMESTAMP, TIMESTAMP
+                    }
+            );
+
+            logger.info("Save payment to DB : " + payment.toString());
         }
         logger.info("Save all payments to DB");
     }
@@ -90,7 +100,4 @@ public class PaymentDAO {
 
         logger.info("Save payment to DB : " + payment.toString());
     }
-
-
-
 }

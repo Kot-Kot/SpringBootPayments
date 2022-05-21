@@ -15,20 +15,15 @@ public class AddressController {
     private static final Logger logger = (Logger) LogManager.getLogger("LOG_TO_FILE");
     private final AddressDAO addressDAO;
 
-    private final ReadFromInitFileController readFromInitFileController;
-
     @Autowired
-    public AddressController(AddressDAO addressDAO, ReadFromInitFileController readFromInitFileController) {
+    public AddressController(AddressDAO addressDAO) {
         this.addressDAO = addressDAO;
-        this.readFromInitFileController = readFromInitFileController;
     }
 
 
-    @GetMapping("/saveAll")
-    public String saveAll() {
-        addressDAO.saveAll(readFromInitFileController.readFromInitFile());
-        return "saveaddresses";
-
+    @PutMapping("/saveAll")
+    public void saveAll(@RequestBody List<UserBillingAddress> addresses) {
+        addressDAO.saveAll(addresses);
     }
 
     @PutMapping("/save")
@@ -36,16 +31,6 @@ public class AddressController {
         addressDAO.save(address);
     }
 
-//    @GetMapping ("/show")
-//    public String selectAll() {
-//        List<UserBillingAddress> userBillingAddresses = addressDAO.selectAll();
-//        for(UserBillingAddress u : userBillingAddresses){
-//            logger.info(u.toString());
-//            System.out.println(u.toString());
-//        }
-//        return addressDAO.selectAll().toString();
-//
-//    }
 
     @GetMapping ("/show")
     @ResponseBody
@@ -53,9 +38,7 @@ public class AddressController {
         List<UserBillingAddress> userBillingAddresses = addressDAO.selectAll();
         for(UserBillingAddress u : userBillingAddresses){
             logger.info("Select from DB : " + u.toString());
-            System.out.println(u.toString());
         }
         return userBillingAddresses;
-
     }
 }

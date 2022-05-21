@@ -19,7 +19,6 @@ import static java.sql.Types.VARCHAR;
 @Repository
 public class TemplateDAO {
     private static final Logger logger = (Logger) LogManager.getLogger("LOG_TO_FILE");
-    private static final String KEYWORD = "TEMPLATE";
     private final JdbcTemplate jdbcTemplate;
 
     private final RowMapper<Template> mapper = BeanPropertyRowMapper.newInstance(Template.class);
@@ -29,26 +28,27 @@ public class TemplateDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-
     public List<Template> selectAll() {
         return jdbcTemplate.query("SELECT * FROM templates", new TemplateMapper());
     }
 
-    public void saveAll(List<String> stringsFromFile) {
-        String[] template = null;
-        for (String s : stringsFromFile) {
-            if (s.contains(KEYWORD)) {
-                System.out.print("Added template   ");
-                System.out.println(s);
-                template = s.split("\\|");
-                template[4] = template[4].replaceAll("[^A-Za-z0-9]", "");
-                jdbcTemplate.update("INSERT INTO templates (template_name, iban, purpose, contact) VALUES (?, ?, ?, ?);",
-                        template[1], template[2], template[3], template[4]);
-
-            }
-
-
+    public void saveAll(List<Template> templates) {
+        for (Template template : templates) {
+            jdbcTemplate.update(
+                    "INSERT INTO templates (template_name, iban, purpose, contact) VALUES (?, ?, ?, ?)",
+                    new Object[]{
+                            template.getTemplateName(),
+                            template.getIban(),
+                            template.getPaymentPurpose(),
+                            template.getUserContact()
+                    },
+                    new int[]{
+                            VARCHAR, VARCHAR, VARCHAR, VARCHAR
+                    }
+            );
+            logger.info("Save template to DB : " + template.toString());
         }
+
         logger.info("Save all templates to DB");
     }
 

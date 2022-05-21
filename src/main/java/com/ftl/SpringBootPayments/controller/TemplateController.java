@@ -18,20 +18,15 @@ public class TemplateController {
 
     private final TemplateDAO templateDAO;
 
-    private final ReadFromInitFileController readFromInitFileController;
-
     @Autowired
-    public TemplateController(TemplateDAO templateDAO, ReadFromInitFileController readFromInitFileController) {
+    public TemplateController(TemplateDAO templateDAO) {
         this.templateDAO = templateDAO;
-        this.readFromInitFileController = readFromInitFileController;
     }
 
 
-    @GetMapping("/saveAll")
-    public String saveAll() {
-        templateDAO.saveAll(readFromInitFileController.readFromInitFile());
-        return "saveTemplate";
-
+    @PutMapping("/saveAll")
+    public void saveAll(@RequestBody List<Template> templates) {
+        templateDAO.saveAll(templates);
     }
 
     @PutMapping("/save")
@@ -39,23 +34,13 @@ public class TemplateController {
         templateDAO.save(template);
     }
 
-//    @GetMapping ("/show")
-//    public String selectAll() {
-//        List<Template> templates = templateDAO.selectAll();
-//        for(Template t : templates){
-//            System.out.println(t.toString());
-//            logger.info(t.toString());
-//        }
-//        return templateDAO.selectAll().toString();
-//
-//    }
+
     @GetMapping ("/show")
     @ResponseBody
     public List<Template> selectAll() {
         List<Template> templates = templateDAO.selectAll();
         for(Template t : templates){
             logger.info("Select from DB : " + t.toString());
-            System.out.println(t.toString());
         }
         return templates;
 

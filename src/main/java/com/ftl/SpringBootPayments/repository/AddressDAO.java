@@ -18,9 +18,7 @@ import static java.sql.Types.VARCHAR;
 @Repository
 public class AddressDAO {
     private static final Logger logger = (Logger) LogManager.getLogger("LOG_TO_FILE");
-    private static final String KEYWORD = "ADDRESS";
     private final JdbcTemplate jdbcTemplate;
-    private final RowMapper<UserBillingAddress> mapper = BeanPropertyRowMapper.newInstance(UserBillingAddress.class);
 
     @Autowired
     public AddressDAO(JdbcTemplate jdbcTemplate) {
@@ -31,20 +29,19 @@ public class AddressDAO {
         return jdbcTemplate.query("SELECT * FROM user_billing_addresses", new AddressMapper());
     }
 
-    public void saveAll(List<String> stringsFromFile) {
-        String[] userBillingAddresses = null;
-        for (String s : stringsFromFile) {
-            if (s.contains(KEYWORD)) {
-                System.out.print("Added address   ");
-                System.out.println(s);
-                userBillingAddresses = s.split("\\|");
-                userBillingAddresses[2] = userBillingAddresses[2].replaceAll("[^A-Za-z0-9]", "");
-                jdbcTemplate.update("INSERT INTO user_billing_addresses (billing_address, contact) VALUES (?, ?);",
-                        userBillingAddresses[1], userBillingAddresses[2]);
-
-            }
-
-
+    public void saveAll(List<UserBillingAddress> addresses) {
+        for (UserBillingAddress address : addresses) {
+            jdbcTemplate.update(
+                    "INSERT INTO user_billing_addresses (billing_address, contact) VALUES (?, ?)",
+                    new Object[]{
+                            address.getBillingAddress(),
+                            address.getUserContact()
+                    },
+                    new int[]{
+                            VARCHAR, VARCHAR
+                    }
+            );
+            logger.info("Save address to DB : " + address.toString());
         }
         logger.info("Save all addresses to DB");
     }

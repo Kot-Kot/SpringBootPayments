@@ -21,12 +21,9 @@ public class UserController {
     private static final Logger logger = (Logger) LogManager.getLogger("LOG_TO_FILE");
     private final UserDAO userDAO;
 
-    private final ReadFromInitFileController readFromInitFileController;
-
     @Autowired
-    public UserController(UserDAO userDAO, ReadFromInitFileController readFromInitFileController) {
+    public UserController(UserDAO userDAO) {
         this.userDAO = userDAO;
-        this.readFromInitFileController = readFromInitFileController;
     }
 
     @PutMapping("/save")
@@ -34,29 +31,17 @@ public class UserController {
         userDAO.save(user);
     }
 
-//    @PutMapping("/save")
-//    public String saveAll() {
-//        userDAO.saveAll(readFromInitFileController.readFromInitFile());
-//        return "saveUsers";
-//    }
+    @PutMapping("/saveAll")
+    public void saveAll(@RequestBody List<User> users) {
+        userDAO.saveAll(users);
+    }
 
-//    @GetMapping("/show")
-//    public String selectAll() {
-//        List<User> users = userDAO.selectAll();
-//        for(User u : users){
-//            logger.info(u.toString());
-//            System.out.println(u.toString());
-//        }
-//        return userDAO.selectAll().toString();
-//
-//    }
     @GetMapping ("/show")
     @ResponseBody
     public List<User> selectAll() {
         List<User> users = userDAO.selectAll();
         for(User u : users){
             logger.info("Select from DB : " + u.toString());
-            System.out.println(u.toString());
         }
         return users;
 

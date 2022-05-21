@@ -18,43 +18,40 @@ import java.util.List;
 
 import static java.sql.Types.VARCHAR;
 
-@Log4j2
+
 @Repository
 public class UserDAO  {
     private static final Logger logger = (Logger) LogManager.getLogger("LOG_TO_FILE");
-
-    private static final String KEYWORD = "REGISTRATION";
     private final JdbcTemplate jdbcTemplate;
 
     private final RowMapper<User> mapper = BeanPropertyRowMapper.newInstance(User.class);
-
 
     @Autowired
     public UserDAO(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-
     public List<User> selectAll() {
 
         return jdbcTemplate.query("SELECT * FROM users", mapper);
     }
 
-    public void saveAll(List<String> stringsFromFile) {
-        String[] user = null;
-        for (String s : stringsFromFile) {
-            if (s.contains(KEYWORD)) {
-                System.out.print("Added user   ");
-                System.out.println(s);
-                user = s.split("\\|");
-                user[3] = user[3].replaceAll("[^A-Za-z0-9]", "");
-                jdbcTemplate.update("INSERT INTO users (fio, email, phone) VALUES(?, ?, ?)",
-                        user[1], user[2], user[3]);
+    public void saveAll(List<User> users) {
+        for (User user : users){
+            jdbcTemplate.update(
+                    "INSERT INTO users (fio, email, phone) VALUES (?, ?, ?)",
+                    new Object[]{
+                            user.getFio(),
+                            user.getEmail(),
+                            user.getPhone()
+                    },
+                    new int[]{
+                            VARCHAR, VARCHAR, VARCHAR
+                    }
+            );
 
-            }
-
-
-        }
+            logger.info("Save user to DB : " + user.toString());
+    }
         logger.info("Save all users to DB");
     }
 
