@@ -1,9 +1,7 @@
-package com.ftl.SpringBootPayments.controller;
+package com.ftl.payments.controller;
 
-import com.ftl.SpringBootPayments.model.Payment;
-import com.ftl.SpringBootPayments.model.Template;
-import com.ftl.SpringBootPayments.model.UserBillingAddress;
-import com.ftl.SpringBootPayments.repository.PaymentDAO;
+import com.ftl.payments.model.Payment;
+import com.ftl.payments.repository.PaymentDAO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +17,6 @@ public class PaymentController {
     private final PaymentDAO paymentDAO;
     @Value("${paymentStatusNew}")
     private String status;
-
 
     @Autowired
     public PaymentController(PaymentDAO paymentDAO) {
@@ -41,11 +38,11 @@ public class PaymentController {
         paymentDAO.saveAll(payments);
     }
 
-    @GetMapping ("/show")
+    @GetMapping("/show")
     @ResponseBody
     public List<Payment> selectAll() {
         List<Payment> payments = paymentDAO.selectAll();
-        for(Payment p : payments){
+        for (Payment p : payments) {
             logger.info("Select from DB : " + p.toString());
         }
         return payments;
@@ -56,7 +53,7 @@ public class PaymentController {
     @ResponseBody
     public List<Payment> selectStatusNew() {
         List<Payment> payments = paymentDAO.selectWithStatus(status);
-        for(Payment p : payments){
+        for (Payment p : payments) {
             logger.info("Select from DB : " + p.toString());
         }
         return payments;

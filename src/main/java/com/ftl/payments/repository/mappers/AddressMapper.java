@@ -1,5 +1,6 @@
-package com.ftl.SpringBootPayments.repository.mappers;
-import com.ftl.SpringBootPayments.model.UserBillingAddress;
+package com.ftl.payments.repository.mappers;
+
+import com.ftl.payments.model.UserBillingAddress;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

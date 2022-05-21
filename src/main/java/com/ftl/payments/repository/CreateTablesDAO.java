@@ -1,6 +1,6 @@
-package com.ftl.SpringBootPayments.repository;
+package com.ftl.payments.repository;
 
-import com.ftl.SpringBootPayments.model.User;
+import com.ftl.payments.model.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +11,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.io.*;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
+
 
 @Repository
 public class CreateTablesDAO {
@@ -39,8 +37,7 @@ public class CreateTablesDAO {
         try {
             fr = new FileReader(new File(createTablesFile));
             BufferedReader br = new BufferedReader(fr);
-            while((s = br.readLine()) != null)
-            {
+            while ((s = br.readLine()) != null) {
                 sb.append(s);
             }
             br.close();
@@ -52,7 +49,7 @@ public class CreateTablesDAO {
         }
 
         jdbcTemplate.execute(sb.toString());
-        logger.info( "Tables were created from sql file");
+        logger.info("Tables were created from sql file");
         return sb.toString();
     }
 

@@ -1,4 +1,4 @@
-package com.ftl.SpringBootPayments;
+package com.ftl.payments;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

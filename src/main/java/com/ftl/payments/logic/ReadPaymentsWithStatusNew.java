@@ -1,26 +1,21 @@
-package com.ftl.SpringBootPayments.Logic;
+package com.ftl.payments.logic;
 
-import com.ftl.SpringBootPayments.model.Payment;
-import com.ftl.SpringBootPayments.repository.PaymentDAO;
+import com.ftl.payments.model.Payment;
+import com.ftl.payments.repository.PaymentDAO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Scope;
 import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.EnableAsync;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Random;
-@EnableScheduling
-@EnableAsync
+
 @Component
 public class ReadPaymentsWithStatusNew {
     private static final Logger logger = (Logger) LogManager.getLogger("LOG_TO_FILE");
@@ -37,26 +32,24 @@ public class ReadPaymentsWithStatusNew {
         this.paymentDAO = paymentDAO;
     }
 
-
     @Autowired
     @Async
     @Scheduled(fixedDelay = 1000)
     public void startReading() {
-            List<Payment> payments = paymentDAO.selectWithStatus(status);
-            if(payments.size() == 0 & paymentDAO.selectAll().size() != 0){
-                return;
-            }
-            LocalDateTime now = LocalDateTime.now();
-            for (Payment p : payments) {
-                if (p.getCreationDateTime().until(now, ChronoUnit.MILLIS) > 2000) {
-                    String statusGenerator = statusGenerator();
-                    paymentDAO.update(statusGenerator, p.getId());
-                    logger.info(p.toString() + " change status to : " + statusGenerator);
-                }
+        List<Payment> payments = paymentDAO.selectWithStatus(status);
+        if (CollectionUtils.isEmpty(payments)) {
+            return;
+        }
+        for (Payment p : payments) {
+            if (p.getCreationDateTime().until(LocalDateTime.now(), ChronoUnit.MILLIS) > 2000) {
+                String statusGenerator = statusGenerator();
+                paymentDAO.update(statusGenerator, p.getId());
+                logger.info(p.toString() + " change status to : " + statusGenerator);
             }
         }
+    }
 
-     private String statusGenerator() {
+    private String statusGenerator() {
         Random random = new Random();
         int number = random.nextInt(3);
         switch (number) {
@@ -66,7 +59,6 @@ public class ReadPaymentsWithStatusNew {
                 return "failed";
             case 2:
                 return "new";
-
         }
         return null;
     }

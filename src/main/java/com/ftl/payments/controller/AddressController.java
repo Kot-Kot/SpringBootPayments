@@ -1,7 +1,7 @@
-package com.ftl.SpringBootPayments.controller;
+package com.ftl.payments.controller;
 
-import com.ftl.SpringBootPayments.model.UserBillingAddress;
-import com.ftl.SpringBootPayments.repository.AddressDAO;
+import com.ftl.payments.model.UserBillingAddress;
+import com.ftl.payments.repository.AddressDAO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,11 +32,11 @@ public class AddressController {
     }
 
 
-    @GetMapping ("/show")
+    @GetMapping("/show")
     @ResponseBody
     public List<UserBillingAddress> selectAll() {
         List<UserBillingAddress> userBillingAddresses = addressDAO.selectAll();
-        for(UserBillingAddress u : userBillingAddresses){
+        for (UserBillingAddress u : userBillingAddresses) {
             logger.info("Select from DB : " + u.toString());
         }
         return userBillingAddresses;

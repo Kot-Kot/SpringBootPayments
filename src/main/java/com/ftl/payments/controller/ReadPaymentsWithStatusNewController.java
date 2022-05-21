@@ -1,7 +1,7 @@
-package com.ftl.SpringBootPayments.controller;
+package com.ftl.payments.controller;
 
-import com.ftl.SpringBootPayments.Logic.ReadPaymentsWithStatusNew;
-import com.ftl.SpringBootPayments.repository.PaymentDAO;
+import com.ftl.payments.logic.ReadPaymentsWithStatusNew;
+import com.ftl.payments.repository.PaymentDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +20,7 @@ public class ReadPaymentsWithStatusNewController {
     }
 
     @GetMapping("/change")
-    public void changeStatus(){
+    public void changeStatus() {
         readPaymentsWithStatusNew.startReading();
     }
 }

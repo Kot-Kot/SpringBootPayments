@@ -1,6 +1,8 @@
-package com.ftl.SpringBootPayments.repository.mappers;
-import com.ftl.SpringBootPayments.model.Payment;
+package com.ftl.payments.repository.mappers;
+
+import com.ftl.payments.model.Payment;
 import org.springframework.jdbc.core.RowMapper;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 

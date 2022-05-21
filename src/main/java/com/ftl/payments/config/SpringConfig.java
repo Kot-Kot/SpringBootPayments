@@ -1,4 +1,4 @@
-package com.ftl.SpringBootPayments.config;
+package com.ftl.payments.config;
 
 
 import lombok.extern.log4j.Log4j2;
@@ -17,11 +17,5 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableAsync
 @Log4j2
 public class SpringConfig implements WebMvcConfigurer {
-    private final ApplicationContext applicationContext;
-
-    @Autowired
-    public SpringConfig(ApplicationContext applicationContext) {
-        this.applicationContext = applicationContext;
-    }
 
 }

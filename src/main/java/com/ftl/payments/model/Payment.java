@@ -1,14 +1,6 @@
-package com.ftl.SpringBootPayments.model;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
+package com.ftl.payments.model;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 @lombok.Data
 @lombok.AllArgsConstructor

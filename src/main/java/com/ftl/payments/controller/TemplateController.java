@@ -1,9 +1,8 @@
-package com.ftl.SpringBootPayments.controller;
+package com.ftl.payments.controller;
 
-import com.ftl.SpringBootPayments.model.Payment;
-import com.ftl.SpringBootPayments.model.Template;
-import com.ftl.SpringBootPayments.model.UserBillingAddress;
-import com.ftl.SpringBootPayments.repository.TemplateDAO;
+
+import com.ftl.payments.model.Template;
+import com.ftl.payments.repository.TemplateDAO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +22,6 @@ public class TemplateController {
         this.templateDAO = templateDAO;
     }
 
-
     @PutMapping("/saveAll")
     public void saveAll(@RequestBody List<Template> templates) {
         templateDAO.saveAll(templates);
@@ -34,16 +32,13 @@ public class TemplateController {
         templateDAO.save(template);
     }
 
-
-    @GetMapping ("/show")
+    @GetMapping("/show")
     @ResponseBody
     public List<Template> selectAll() {
         List<Template> templates = templateDAO.selectAll();
-        for(Template t : templates){
+        for (Template t : templates) {
             logger.info("Select from DB : " + t.toString());
         }
         return templates;
-
     }
-
 }

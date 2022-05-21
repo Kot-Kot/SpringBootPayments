@@ -1,26 +1,23 @@
-package com.ftl.SpringBootPayments.repository;
+package com.ftl.payments.repository;
 
+import com.ftl.payments.model.User;
 
-import com.ftl.SpringBootPayments.model.User;
-import lombok.extern.log4j.Log4j2;
-import org.apache.commons.logging.Log;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import java.sql.*;
 import java.util.List;
 
 import static java.sql.Types.VARCHAR;
 
 
 @Repository
-public class UserDAO  {
+public class UserDAO {
     private static final Logger logger = (Logger) LogManager.getLogger("LOG_TO_FILE");
     private final JdbcTemplate jdbcTemplate;
 
@@ -37,25 +34,13 @@ public class UserDAO  {
     }
 
     public void saveAll(List<User> users) {
-        for (User user : users){
-            jdbcTemplate.update(
-                    "INSERT INTO users (fio, email, phone) VALUES (?, ?, ?)",
-                    new Object[]{
-                            user.getFio(),
-                            user.getEmail(),
-                            user.getPhone()
-                    },
-                    new int[]{
-                            VARCHAR, VARCHAR, VARCHAR
-                    }
-            );
-
-            logger.info("Save user to DB : " + user.toString());
-    }
+        for (User user : users) {
+            save(user);
+        }
         logger.info("Save all users to DB");
     }
 
-    public void save (User user) {
+    public void save(User user) {
         jdbcTemplate.update(
                 "INSERT INTO users (fio, email, phone) VALUES (?, ?, ?)",
                 new Object[]{

@@ -1,16 +1,16 @@
-package com.ftl.SpringBootPayments.repository;
+package com.ftl.payments.repository;
 
 
-import com.ftl.SpringBootPayments.model.Payment;
-import com.ftl.SpringBootPayments.model.Template;
-import com.ftl.SpringBootPayments.repository.mappers.PaymentMapper;
-import lombok.extern.log4j.Log4j2;
+import com.ftl.payments.model.Payment;
+
+import com.ftl.payments.repository.mappers.PaymentMapper;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
+
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
+
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
@@ -33,53 +33,34 @@ public class PaymentDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Payment> selectAll()
-    {
+    public List<Payment> selectAll() {
         return jdbcTemplate.query("SELECT * FROM payments", new PaymentMapper());
     }
 
     public List<Payment> selectWithStatus(String status) {
         return jdbcTemplate.query("SELECT * FROM payments WHERE status = ?", new Object[]{status}
-                ,new int[]{Types.VARCHAR}
-                ,new PaymentMapper());
+                , new int[]{Types.VARCHAR}
+                , new PaymentMapper());
     }
 
     public void update(String newStatus, Long id) {
         jdbcTemplate.update("UPDATE payments SET status = ?, status_changed_dt = ? WHERE id = ?",
-                newStatus,Timestamp.valueOf(LocalDateTime.now()), id);
+                newStatus, Timestamp.valueOf(LocalDateTime.now()), id);
     }
 
     public void updateAllWithStatusNew(String newStatus) {
         jdbcTemplate.update("UPDATE payments SET status = ?, status_changed_dt = ?",
-                newStatus,Timestamp.valueOf(LocalDateTime.now()));
+                newStatus, Timestamp.valueOf(LocalDateTime.now()));
     }
 
     public void saveAll(List<Payment> payments) {
         for (Payment payment : payments) {
-            jdbcTemplate.update(
-                    "INSERT INTO payments " +
-                            "(template_id, card_number, p_sum, status, creation_dt, status_changed_dt) " +
-                            "VALUES (?, ?, ?, ?, ?, ?);",
-                    new Object[]{
-                            payment.getTemplateId(),
-                            payment.getCardNumber(),
-                            payment.getSum(),
-                            payment.getStatus(),
-                            Timestamp.valueOf(LocalDateTime.now()),
-                            Timestamp.valueOf(LocalDateTime.now())
-
-                    },
-                    new int[]{
-                            BIGINT, VARCHAR, NUMERIC, VARCHAR, TIMESTAMP, TIMESTAMP
-                    }
-            );
-
-            logger.info("Save payment to DB : " + payment.toString());
+            save(payment);
         }
         logger.info("Save all payments to DB");
     }
 
-    public void save (Payment payment) {
+    public void save(Payment payment) {
         jdbcTemplate.update(
                 "INSERT INTO payments " +
                         "(template_id, card_number, p_sum, status, creation_dt, status_changed_dt) " +

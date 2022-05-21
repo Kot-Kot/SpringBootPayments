@@ -1,9 +1,8 @@
-package com.ftl.SpringBootPayments.repository;
+package com.ftl.payments.repository;
 
 
-import com.ftl.SpringBootPayments.model.Template;
-import com.ftl.SpringBootPayments.model.User;
-import com.ftl.SpringBootPayments.repository.mappers.TemplateMapper;
+import com.ftl.payments.model.Template;
+import com.ftl.payments.repository.mappers.TemplateMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,25 +33,13 @@ public class TemplateDAO {
 
     public void saveAll(List<Template> templates) {
         for (Template template : templates) {
-            jdbcTemplate.update(
-                    "INSERT INTO templates (template_name, iban, purpose, contact) VALUES (?, ?, ?, ?)",
-                    new Object[]{
-                            template.getTemplateName(),
-                            template.getIban(),
-                            template.getPaymentPurpose(),
-                            template.getUserContact()
-                    },
-                    new int[]{
-                            VARCHAR, VARCHAR, VARCHAR, VARCHAR
-                    }
-            );
-            logger.info("Save template to DB : " + template.toString());
+            save(template);
         }
 
         logger.info("Save all templates to DB");
     }
 
-    public void save (Template template) {
+    public void save(Template template) {
         jdbcTemplate.update(
                 "INSERT INTO templates (template_name, iban, purpose, contact) VALUES (?, ?, ?, ?)",
                 new Object[]{
