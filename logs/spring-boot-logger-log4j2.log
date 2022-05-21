@@ -228,3 +228,28 @@
 2022-05-21 13:14:24,857 [http-nio-8080-exec-2] INFO  LOG_TO_FILE - Select from DB : User(fio=Ivanov Ivan, email=i.ivanov@gmail.com, phone=0993505050)
 2022-05-21 13:14:24,857 [http-nio-8080-exec-2] INFO  LOG_TO_FILE - Select from DB : User(fio=Ivanov Ivan2, email=i.ivano2v@gmail.com, phone=0993505051)
 2022-05-21 13:14:24,857 [http-nio-8080-exec-2] INFO  LOG_TO_FILE - Select from DB : User(fio=Ivanov Ivan3, email=i.ivano3v@gmail.com, phone=0993505052)
+2022-05-21 13:23:57,580 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Tables were created from sql file
+2022-05-21 13:25:14,833 [http-nio-8080-exec-3] INFO  LOG_TO_FILE - Save user to DB : User(fio=Ivanov Ivan, email=i.ivanov@gmail.com, phone=0993505050)
+2022-05-21 13:25:14,833 [http-nio-8080-exec-3] INFO  LOG_TO_FILE - Save all users to DB
+2022-05-21 13:25:29,970 [http-nio-8080-exec-4] INFO  LOG_TO_FILE - Select from DB : User(fio=Ivanov Ivan, email=i.ivanov@gmail.com, phone=0993505050)
+2022-05-21 13:26:49,641 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save address to DB : UserBillingAddress(id=0, billingAddress=Ivanov Ivan,Kashtanovaya str, Kyiv 45005, userContact=0993505050)
+2022-05-21 13:26:49,642 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save address to DB : UserBillingAddress(id=0, billingAddress=Ivanov Ivan,Abrikosovaya str, Lviv, 90009, userContact=0993505050)
+2022-05-21 13:26:49,642 [http-nio-8080-exec-1] INFO  LOG_TO_FILE - Save all addresses to DB
+2022-05-21 13:27:20,485 [http-nio-8080-exec-3] INFO  LOG_TO_FILE - Save template to DB : Template(templateID=0, templateName=Template 1, iban=UA903052992990004149123456701, paymentPurpose=Purpose 1, userContact=0993505050)
+2022-05-21 13:27:20,486 [http-nio-8080-exec-3] INFO  LOG_TO_FILE - Save template to DB : Template(templateID=0, templateName=Template 2, iban=UA903052992990004149123456702, paymentPurpose=Purpose 2, userContact=0993505050)
+2022-05-21 13:27:20,487 [http-nio-8080-exec-3] INFO  LOG_TO_FILE - Save template to DB : Template(templateID=0, templateName=Template 3, iban=UA903052992990004149123456703, paymentPurpose=Purpose 3, userContact=0993505050)
+2022-05-21 13:27:20,488 [http-nio-8080-exec-3] INFO  LOG_TO_FILE - Save template to DB : Template(templateID=0, templateName=Template 4, iban=UA903052992990004149123456704, paymentPurpose=Purpose 4, userContact=0993505050)
+2022-05-21 13:27:20,489 [http-nio-8080-exec-3] INFO  LOG_TO_FILE - Save all templates to DB
+2022-05-21 13:28:39,461 [http-nio-8080-exec-6] INFO  LOG_TO_FILE - Save payment to DB : Payment(id=0, templateId=10000001, cardNumber=4485578898964235, sum=100.55, status=new, creationDateTime=null, statusChangedDateTime=null)
+2022-05-21 13:28:39,462 [http-nio-8080-exec-6] INFO  LOG_TO_FILE - Save payment to DB : Payment(id=0, templateId=10000002, cardNumber=4485578898964236, sum=200.55, status=new, creationDateTime=null, statusChangedDateTime=null)
+2022-05-21 13:28:39,464 [http-nio-8080-exec-6] INFO  LOG_TO_FILE - Save payment to DB : Payment(id=0, templateId=10000003, cardNumber=4485578898964237, sum=500.55, status=new, creationDateTime=null, statusChangedDateTime=null)
+2022-05-21 13:28:39,466 [http-nio-8080-exec-6] INFO  LOG_TO_FILE - Save payment to DB : Payment(id=0, templateId=10000004, cardNumber=4485578898964238, sum=1000.55, status=new, creationDateTime=null, statusChangedDateTime=null)
+2022-05-21 13:28:39,466 [http-nio-8080-exec-6] INFO  LOG_TO_FILE - Save all payments to DB
+2022-05-21 13:28:41,516 [task-4] INFO  LOG_TO_FILE - Payment(id=100000001, templateId=10000001, cardNumber=4485578898964235, sum=100.55, status=new, creationDateTime=2022-05-21T13:28:39.433726, statusChangedDateTime=2022-05-21T13:28:39.433726) change status to : paid
+2022-05-21 13:28:41,516 [task-4] INFO  LOG_TO_FILE - Payment(id=100000002, templateId=10000002, cardNumber=4485578898964236, sum=200.55, status=new, creationDateTime=2022-05-21T13:28:39.461724, statusChangedDateTime=2022-05-21T13:28:39.461724) change status to : new
+2022-05-21 13:28:41,516 [task-4] INFO  LOG_TO_FILE - Payment(id=100000003, templateId=10000003, cardNumber=4485578898964237, sum=500.55, status=new, creationDateTime=2022-05-21T13:28:39.462724, statusChangedDateTime=2022-05-21T13:28:39.462724) change status to : failed
+2022-05-21 13:28:41,516 [task-4] INFO  LOG_TO_FILE - Payment(id=100000004, templateId=10000004, cardNumber=4485578898964238, sum=1000.55, status=new, creationDateTime=2022-05-21T13:28:39.464726, statusChangedDateTime=2022-05-21T13:28:39.464726) change status to : new
+2022-05-21 13:28:42,520 [task-5] INFO  LOG_TO_FILE - Payment(id=100000002, templateId=10000002, cardNumber=4485578898964236, sum=200.55, status=new, creationDateTime=2022-05-21T13:28:39.461724, statusChangedDateTime=2022-05-21T13:28:41.516847) change status to : paid
+2022-05-21 13:28:42,520 [task-5] INFO  LOG_TO_FILE - Payment(id=100000004, templateId=10000004, cardNumber=4485578898964238, sum=1000.55, status=new, creationDateTime=2022-05-21T13:28:39.464726, statusChangedDateTime=2022-05-21T13:28:41.516847) change status to : new
+2022-05-21 13:28:43,535 [task-6] INFO  LOG_TO_FILE - Payment(id=100000004, templateId=10000004, cardNumber=4485578898964238, sum=1000.55, status=new, creationDateTime=2022-05-21T13:28:39.464726, statusChangedDateTime=2022-05-21T13:28:42.520358) change status to : new
+2022-05-21 13:28:44,547 [task-7] INFO  LOG_TO_FILE - Payment(id=100000004, templateId=10000004, cardNumber=4485578898964238, sum=1000.55, status=new, creationDateTime=2022-05-21T13:28:39.464726, statusChangedDateTime=2022-05-21T13:28:43.535980) change status to : failed

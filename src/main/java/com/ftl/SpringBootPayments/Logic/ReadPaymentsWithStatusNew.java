@@ -42,18 +42,13 @@ public class ReadPaymentsWithStatusNew {
     @Async
     @Scheduled(fixedDelay = 1000)
     public void startReading() {
-//            System.out.println("\nEvery 1 sec");
             List<Payment> payments = paymentDAO.selectWithStatus(status);
-//            System.out.println("payments_New.size()    =    " + payments.size());
-//            System.out.println("payments.size()    =    " + paymentDAO.selectAll().size());
             if(payments.size() == 0 & paymentDAO.selectAll().size() != 0){
                 return;
             }
             LocalDateTime now = LocalDateTime.now();
             for (Payment p : payments) {
-                //System.out.println("time = " + p.getCreationDateTime().until(now, ChronoUnit.MILLIS));
                 if (p.getCreationDateTime().until(now, ChronoUnit.MILLIS) > 2000) {
-                    //System.out.println("statusGenerator  : " + p.getId() + "  " + p.getStatus());
                     String statusGenerator = statusGenerator();
                     paymentDAO.update(statusGenerator, p.getId());
                     logger.info(p.toString() + " change status to : " + statusGenerator);
